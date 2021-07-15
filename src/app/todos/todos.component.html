@@ -1,0 +1,26 @@
+<div class="mt-5 border border-secondary rounded">
+  <button (click)="addTodo()" type="button" class="btn btn-primary btn-lg btn-block">Add Todo</button>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">status</th>
+        <th scope="col">change</th>
+        <th scope="col">delete</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="todos">
+      <tr *ngFor="let todo of todos | async">
+        <td>{{todo.description}}</td>
+        <td *ngIf="todo.done"><a (click)="changeStatus(todo)" class="btn"><i
+              class="fa fa-check-circle text-success"></i></a></td>
+        <td *ngIf="!todo.done"><a (click)="changeStatus(todo)" class="btn"><i
+              class="fa fa-times-circle text-danger"></i></a></td>
+        <td><a (click)="changeTodo(todo.id)" class="btn"><i class="fa fa-refresh text-primary"></i></a></td>
+        <td><a (click)="deleteTodo(todo.id)" class="btn"> <i class="fa fa-trash text-danger"></i></a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
